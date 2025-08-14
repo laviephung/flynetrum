@@ -2,12 +2,15 @@
 set -e
 
 echo "[*] Khởi động NetRum Node..."
-cd /app
 
-# Nếu cần migrate / setup
-if [ ! -d "$HOME/.config" ]; then
-    mkdir -p $HOME/.config
+# Đồng bộ dữ liệu (nếu cần)
+if [ ! -f "$HOME/.netrum/config.json" ]; then
+    echo "[*] Chưa có config, tạo mới..."
+    netrum-init || true
 fi
 
+# Chạy tiến trình NetRum Node
+netrum-sync &
+
 # Giữ container sống
-exec bash
+tail -f /dev/null
