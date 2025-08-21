@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  node1:
+    image: netrum-lite-node:latest
+    container_name: netrum_node1
+    volumes:
+      - ./data/node1:/root/.netrum
+    command: ["mining"]  # hoặc các lệnh bạn muốn tự động chạy như `netrum-mining`
+  node2:
+    image: netrum-lite-node:latest
+    container_name: netrum_node2
+    volumes:
+      - ./data/node2:/root/.netrum
+    command: ["mining"]
